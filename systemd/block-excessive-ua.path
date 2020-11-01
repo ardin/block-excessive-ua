@@ -1,0 +1,10 @@
+# block-excessive-ua.path
+[Unit]
+Description=Monitor the blocked file for changes
+
+[Path]
+PathChanged=/etc/varnish/blocked-ua.vcl
+Unit=block-excessive-ua.service
+
+[Install]
+WantedBy=multi-user.target

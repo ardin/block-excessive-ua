@@ -1,6 +1,6 @@
 # block-excessive-ua
 
-<b>Follow log file and block excessive User-Agent in specified time</b>
+**Follow log file and block excessive User-Agent in specified time**
 
 ```
 $ ./block-excessive-ua.py -h
@@ -19,16 +19,22 @@ optional arguments:
   -v             verbose mode
 ```
 
-Example output:
+**Example output:**
 ```
 $ ./block-excessive-ua.py --output /etc/varnish/blocked-ua.vcl /var/log/httpd/access.log 
 2020-11-01 | 14:57:13 | INFO | BLOCK: Mozilla\/4.0 \(compatible; MSIE 8.0; Windows NT 5.1; Trident\/4.0; .NET CLR 2.0.50727; .NET4.0C; .NET4.0E; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; Core\/1.47.933.400a QQBrowser\/9.4.8699.400\
 ```
 
-Above involves blocking rule, which should be included in your varnish configuration:
+**Above involves blocking rule, which should be included in your varnish configuration:**
 ```
 $ cat /etc/varnish/blocked-ua.vcl
 # 2020-11-01 14:57:13
 if (req.http.User-Agent ~ "Mozilla\/4.0 \(compatible; MSIE 8.0; Windows NT 5.1; Trident\/4.0; .NET CLR 2.0.50727; .NET4.0C; .NET4.0E; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; Core\/1.47.933.400a QQBrowser\/9.4.8699.400\)") { error 429 "Calm down."; }
 ```
 
+**Example reload service:**
+```
+$ sudo cp systemd/* /usr/lib/systemd/system
+$ sudo systemctl enable block-excessive-ua-{path,service} 
+$ sudo systemctl start block-excessive-ua-{path,service} 
+```

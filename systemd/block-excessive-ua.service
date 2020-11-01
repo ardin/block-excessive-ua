@@ -1,0 +1,10 @@
+# block-excessive-ua.service
+[Unit]
+Description=Executes script when a blocked file has changed.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -l -c 'varnishd -C -f /etc/varnish/default.vcl && systemctl reload varnish'
+
+[Install]
+WantedBy=multi-user.target

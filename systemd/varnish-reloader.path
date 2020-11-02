@@ -4,7 +4,7 @@ Description=Monitor the blocked file for changes
 
 [Path]
 PathChanged=/etc/varnish/blocked-ua.vcl
-Unit=block-excessive-ua.service
+Unit=varnish-reloader.service
 
 [Install]
 WantedBy=multi-user.target

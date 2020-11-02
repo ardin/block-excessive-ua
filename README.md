@@ -35,6 +35,6 @@ if (req.http.User-Agent ~ "Mozilla\/4.0 \(compatible; MSIE 8.0; Windows NT 5.1; 
 **Example reload service:**
 ```
 $ sudo cp systemd/* /usr/lib/systemd/system
-$ sudo systemctl enable block-excessive-ua-{path,service} 
-$ sudo systemctl start block-excessive-ua-{path,service} 
+$ sudo systemctl enable varnish-reloader.{path,service} 
+$ sudo systemctl start varnish-reloader.{path,service}
 ```
